@@ -1,0 +1,43 @@
+<FlexboxLayout class="page">
+    <StackLayout class="form">
+        <Image class="logo" src="res://company_logo"></Image>
+        <Label class="header" text="Office App"></Label>
+        <GridLayout rows="auto, auto, auto">
+            <StackLayout class="input-field" row="0">
+                <TextField class="input" hint="Email" keyboardType="email" autocorrect="false"
+                           autocapitalizationType="none" returnKeyType="next"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+            <StackLayout class="input-field" row="1">
+                <TextField class="input" hint="Password" secure="true"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+            <StackLayout class="input-field" row="2" *ngIf="!isLoggingIn">
+                <TextField class="input" hint="Confirm Password" secure="true" returnKeyType="done"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+            <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
+        </GridLayout>
+        <Button class="btn btn-primary m-t-20" [text]="isLoggingIn ? 'Log In' : 'Sign Up'"
+                backgroundColor="orange" [isEnabled]="!processing" (tap)="submit()"></Button>
+        <Label class="login-label" *ngIf="isLoggingIn" text="Forgot your password?"  (tap)="forgotPassword()" ></Label>
+    </StackLayout>
+    <Label class="login-label sign-up-label" (tap)="toggleForm()">
+        <FormattedString>
+            <Span [text]="isLoggingIn ? 'Do not have an account? ' : 'Back to Login'"></Span>
+            <Span [text]="isLoggingIn ? 'Sign Up Here' : ''" class="bold"></Span>
+        </FormattedString>
+    </Label>
+</FlexboxLayout>
+
+
+<!--<FlexboxLayout class="page page-login" backgroundImage="res://mesh">-->
+<!--<StackLayout class="flexbox-item company-name-container">-->
+<!--<Label class="t-30 company-name" text="NativeScript with Auth"></Label>-->
+<!--</StackLayout>-->
+<!--<Image src="res://company_logo" stretch="none" class="company-logo"></Image>-->
+<!--<StackLayout class="flexbox-item">-->
+<!--<Label class="t-18 login-text" text="Log in with your organizational account"></Label>-->
+<!--<Button class="btn btn-login btn-rounded-sm font-weight-bold t-18" (tap)="login()" text="Log in"></Button>        -->
+<!--</StackLayout>-->
+<!--</FlexboxLayout>-->

@@ -1,0 +1,19 @@
+<ActionBar backgroundColor="#dc143c" color="white">
+    <NavigationButton ></NavigationButton>
+    <ActionItem></ActionItem>
+    <Label text="NativeScript App Demo"></Label>
+</ActionBar>
+<ScrollView>
+    <GridLayout class="grid" rows="*, *, 5*, *" height="1000">
+        <Label row="0" horizontalAlignment="center" fontSize="24" text="Offices"></Label>
+        <ListView row="2" [items]="departments" clas="list-group">
+            <ng-template let-department="item">
+                <StackLayout>
+                    <Label class="label" [text]="department.code"></Label>
+                    <Label [text]="department.name"></Label>
+                </StackLayout>
+            </ng-template>
+
+        </ListView>
+    </GridLayout>
+</ScrollView>

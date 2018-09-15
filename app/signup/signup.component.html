@@ -1,0 +1,29 @@
+<FlexboxLayout class="page">
+    <StackLayout class="form">
+        <Image class="logo" src="res://company_logo"></Image>
+        <Label class="header" text="App Name"></Label>
+        <GridLayout rows="auto, auto, auto">
+            <StackLayout class="input-field" row="0">
+                <TextField class="input" hint="Email" keyboardType="email" autocorrect="false"
+                           autocapitalizationType="none" returnKeyType="next"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+            <StackLayout class="input-field" row="1">
+                <TextField class="input" hint="Password" secure="true"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+            <StackLayout class="input-field" row="2">
+                <TextField class="input" hint="Confirm password" secure="true" returnKeyType="done"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+            <ActivityIndicator rowSpan="3"></ActivityIndicator>
+        </GridLayout>
+        <Button class="btn btn-primary m-t-20" [text]="true ? 'Log In' : 'Sign Up'"
+                backgroundColor="orange"></Button>
+    </StackLayout>
+    <Label class="login-label sign-up-label">
+        <FormattedString>
+            <Span text="Back to Login"></Span>
+        </FormattedString>
+    </Label>
+</FlexboxLayout>
