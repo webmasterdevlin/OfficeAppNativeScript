@@ -1,6 +1,3 @@
-import { HttpHeaderResponse, HttpHeaders } from "@angular/common/http";
-import * as applicationSettings from "tns-core-modules/application-settings";
-
 export const Urls = {
   // Replace localhost with 10.0.2.2 on Android emulator
   department_iOS: "http://localhost:5000/api/departments/",

@@ -1,32 +1,29 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { IDepartment } from "~/models/department";
+import { IDepartmentModel } from "~/models/department.model";
 import { Urls } from "~/helpers/constants";
 import { AuthBearer } from "~/helpers/httpHeaders";
 
 import { isAndroid } from "tns-core-modules/platform";
-import * as applicationSettings from "tns-core-modules/application-settings";
-import { User } from "~/models/user.model";
 
 @Injectable()
 export class DepartmentService {
   constructor(private _httpClient: HttpClient) {}
 
-  loadDepartments(): Observable<IDepartment[]> {
-    return this._httpClient.get<IDepartment[]>(
-      `${isAndroid ? Urls.department_Android : Urls.department_iOS}`,
-      AuthBearer.options
+  loadDepartments(): Observable<IDepartmentModel[]> {
+    return this._httpClient.get<IDepartmentModel[]>(
+      `${isAndroid ? Urls.department_Android : Urls.department_iOS}`
     );
   }
 
-  getDepartment(id: string): Observable<IDepartment> {
-    return this._httpClient.get<IDepartment>(
+  getDepartment(id: string): Observable<IDepartmentModel> {
+    return this._httpClient.get<IDepartmentModel>(
       `${isAndroid ? Urls.department_Android : Urls.department_iOS}${id}`
     );
   }
 
-  postDepartment(department: IDepartment): Observable<any> {
+  postDepartment(department: IDepartmentModel): Observable<any> {
     return this._httpClient.post(
       `${isAndroid ? Urls.department_Android : Urls.department_iOS}${
         department.id
@@ -35,7 +32,7 @@ export class DepartmentService {
     );
   }
 
-  putDepartment(department: IDepartment): Observable<any> {
+  putDepartment(department: IDepartmentModel): Observable<any> {
     return this._httpClient.put(
       `${isAndroid ? Urls.department_Android : Urls.department_iOS}${
         department.id
@@ -48,11 +45,5 @@ export class DepartmentService {
     return this._httpClient.delete(
       `${isAndroid ? Urls.department_Android : Urls.department_iOS}${id}`
     );
-  }
-
-  getToken(): string {
-    const uString: string = applicationSettings.getString("jwt");
-    const user: User = JSON.parse(atob(uString));
-    return user.token;
   }
 }

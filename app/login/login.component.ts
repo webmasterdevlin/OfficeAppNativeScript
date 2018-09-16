@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { NgZone } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
-import { User } from "~/models/user.model";
+import { UserModel } from "~/models/user.model";
 import {isAndroid, isIOS} from "platform";
 import * as applicationSettings from 'tns-core-modules/application-settings'
 
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   isLoggingIn: boolean = true;
   isAuthenticating: boolean = false;
   processing: boolean = false;
-  user: User;
+  user: UserModel;
 
   constructor(
     private _routerExtensions: RouterExtensions,
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.page.backgroundSpanUnderStatusBar = true;
     this.page.className = "page-login-container";
     this.page.statusBarStyle = "dark";
-    this.user = new User();
+    this.user = new UserModel();
     console.log(applicationSettings.getString("jwt"));
   }
 

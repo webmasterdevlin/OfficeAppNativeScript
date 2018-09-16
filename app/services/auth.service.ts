@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
-import { User } from "~/models/user.model";
+import { UserModel } from "~/models/user.model";
 import { Observable } from "rxjs";
 import { Urls } from "~/helpers/constants";
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
@@ -15,7 +15,7 @@ import {TypeJson} from "~/helpers/httpHeaders";
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
-  login(user: User): Observable<any> {
+  login(user: UserModel): Observable<any> {
     return this.httpClient.post(
       isAndroid ? Urls.login_Android : Urls.login_iOS,
       JSON.stringify(user),
@@ -23,7 +23,7 @@ export class AuthService {
     );
   }
 
-  register(user: User): Observable<any> {
+  register(user: UserModel): Observable<any> {
     return this.httpClient.post(
       isAndroid ? Urls.signup_Android : Urls.signup_iOS,
       user,
