@@ -5,11 +5,11 @@
         <GridLayout rows="auto, auto, auto">
             <StackLayout class="input-field" row="0">
                 <TextField class="input" hint="Email" keyboardType="email" autocorrect="false"
-                           autocapitalizationType="none" returnKeyType="next"></TextField>
+                           autocapitalizationType="none" returnKeyType="next" [(ngModel)]="user.email"></TextField>
                 <StackLayout class="hr-light"></StackLayout>
             </StackLayout>
             <StackLayout class="input-field" row="1">
-                <TextField class="input" hint="Password" secure="true"></TextField>
+                <TextField class="input" hint="Password" secure="true" [(ngModel)]="user.password"></TextField>
                 <StackLayout class="hr-light"></StackLayout>
             </StackLayout>
             <StackLayout class="input-field" row="2" *ngIf="!isLoggingIn">

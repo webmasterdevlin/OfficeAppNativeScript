@@ -13,6 +13,20 @@
       "description": "accounting office",
       "head": "Ruby",
       "code": "acc001"
+    },
+    {
+      "name": "clinic",
+      "description": "clinic",
+      "head": "Ruby",
+      "code": "cln2",
+      "id": 3
+    },
+    {
+      "name": "clinic",
+      "description": "clinic",
+      "head": "Ruby",
+      "code": "cln2",
+      "id": 4
     }
   ]
 }

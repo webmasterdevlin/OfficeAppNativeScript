@@ -11,6 +11,8 @@ import {LoginComponent} from "~/login/login.component";
 import {SignupComponent} from "~/signup/signup.component";
 import {NativeScriptHttpClientModule} from "nativescript-angular/http-client";
 import {NativeScriptFormsModule} from "nativescript-angular";
+import {AuthService} from "~/services/auth.service";
+import {DepartmentService} from "~/services/department.service";
 
 
 @NgModule({
@@ -30,7 +32,7 @@ import {NativeScriptFormsModule} from "nativescript-angular";
         SignupComponent
     ],
     providers: [
-        LoggedInLazyLoadGuard
+        LoggedInLazyLoadGuard, AuthService, DepartmentService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

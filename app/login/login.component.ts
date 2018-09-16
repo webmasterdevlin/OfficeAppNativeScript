@@ -3,10 +3,14 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { NgZone } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
 import { User } from "~/models/user.model";
-
-import { connectionType, getConnectionType } from "connectivity";
+import {isAndroid, isIOS} from "platform";
+import * as applicationSettings from 'tns-core-modules/application-settings'
 
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
+import { AuthService } from "~/services/auth.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {Urls} from "~/helpers/constants";
+import {debug} from "tns-core-modules/utils/debug";
 
 @Component({
   selector: "Login",
@@ -23,14 +27,16 @@ export class LoginComponent implements OnInit {
   constructor(
     private _routerExtensions: RouterExtensions,
     private zone: NgZone,
-    private page: Page
+    private page: Page,
+    private httpClient: HttpClient,
+    private authService: AuthService
   ) {
     this.page.actionBarHidden = true;
     this.page.backgroundSpanUnderStatusBar = true;
     this.page.className = "page-login-container";
     this.page.statusBarStyle = "dark";
     this.user = new User();
-    console.log("Hello Constructor");
+    console.log(applicationSettings.getString("jwt"));
   }
 
   toSignupPage(): void {}
@@ -40,15 +46,15 @@ export class LoginComponent implements OnInit {
   }
 
   submit(): void {
-    if (!this.user.email || !this.user.password) {
-      alert("Please provide both an email address and a password.");
-      return;
-    }
+    // if (!this.user.email || !this.user.password) {
+    //   alert("Please provide both an email address and a password.");
+    //   return;
+    // }
 
-    if (!this.user.isValidEmail()) {
-      alert("Enter a valid email address.");
-      return;
-    }
+    // if (!this.user.isValidEmail()) {
+    //   alert("Enter a valid email address.");
+    //   return;
+    // }
 
     this.processing = true;
     if (this.isLoggingIn) {
@@ -77,22 +83,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // login() {
-  //     if (!Kinvey.User.getActiveUser() == null) {
-  //         Kinvey.User.loginWithMIC('http://example.com')
-  //             .then((user: Kinvey.User) => {
-  //                 this.navigateHome();
-  //                 console.log("user: " + JSON.stringify(user));
-  //             })
-  //             .catch((error: Kinvey.BaseError) => {
-  //                 alert("An error occurred. Check your Kinvey settings.");
-  //                 console.log("error: " + error);
-  //             });
-  //     } else {
-  //         this.navigateHome();
-  //     }
-  // }
-
   private navigateMain(): void {
     this.zone.run(() => {
       this._routerExtensions.navigate(["main"], {
@@ -108,24 +98,34 @@ export class LoginComponent implements OnInit {
   }
 
   private login(): void {
-    if (getConnectionType() === connectionType.none) {
-      alert("Please check your internet connectivity");
-      return;
-    }
 
+    this.authService.login(this.user).subscribe(data => {
+        console.log(data.token);
+        applicationSettings.setString('jwt', data.token);
+    });
     this.processing = false;
-    console.log("Logged in");
     this.navigateMain();
   }
 
   private register(): void {
-    if (getConnectionType() === connectionType.none) {
-      alert("Please check your internet connectivity");
-      return;
-    }
-
     this.processing = false;
     console.log("Registered");
     this.isLoggingIn = true;
   }
+
+    // login() {
+    //     if (!Kinvey.User.getActiveUser() == null) {
+    //         Kinvey.User.loginWithMIC('http://example.com')
+    //             .then((user: Kinvey.User) => {
+    //                 this.navigateHome();
+    //                 console.log("user: " + JSON.stringify(user));
+    //             })
+    //             .catch((error: Kinvey.BaseError) => {
+    //                 alert("An error occurred. Check your Kinvey settings.");
+    //                 console.log("error: " + error);
+    //             });
+    //     } else {
+    //         this.navigateHome();
+    //     }
+    // }
 }

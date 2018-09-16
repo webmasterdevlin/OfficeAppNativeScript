@@ -1,10 +1,13 @@
 import { Component, ElementRef, OnInit } from "@angular/core";
 import { Button } from "ui/button";
-import { Kinvey, User } from 'kinvey-nativescript-sdk';
+
 import { RouterExtensions } from "nativescript-angular/router";
 import { Page } from "tns-core-modules/ui/page"
 import { EventData } from "data/observable";
 import { StackLayout } from "ui/layouts/stack-layout";
+import * as applicationSettings from "tns-core-modules/application-settings";
+
+import {Kinvey, User} from "kinvey-nativescript-sdk";
 
 @Component({
     selector: "Home",
@@ -51,4 +54,6 @@ export class HomeComponent implements OnInit {
         // Navigate to profile page here
         alert("Navigate to profile page");
     }
+
+
 }

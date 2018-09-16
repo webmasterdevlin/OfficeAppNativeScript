@@ -11,7 +11,7 @@
   ],
   "rules": {
     "array-type": [true, "generic"],
-    "arrow-return-shorthand": true,
+      "arrow-return-shorthand": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "member-access": [true, "no-public"],

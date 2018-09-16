@@ -1,11 +1,33 @@
-import { Injectable } from '@angular/core';
-import {NativeScriptHttpClientModule} from "nativescript-angular/http-client";
-import {HttpClient} from "@angular/common/http";
-
+import { Injectable } from "@angular/core";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders
+} from "@angular/common/http";
+import { User } from "~/models/user.model";
+import { Observable } from "rxjs";
+import { Urls } from "~/helpers/constants";
+import { alert, prompt } from "tns-core-modules/ui/dialogs";
+import { isAndroid } from "tns-core-modules/platform";
+import {TypeJson} from "~/helpers/httpHeaders";
 
 @Injectable()
 export class AuthService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private _httpClient: HttpClient) { }
-  
+  login(user: User): Observable<any> {
+    return this.httpClient.post(
+      isAndroid ? Urls.login_Android : Urls.login_iOS,
+      JSON.stringify(user),
+      TypeJson
+    );
+  }
+
+  register(user: User): Observable<any> {
+    return this.httpClient.post(
+      isAndroid ? Urls.signup_Android : Urls.signup_iOS,
+      user,
+      TypeJson
+    );
+  }
 }
