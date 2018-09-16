@@ -1,7 +1,7 @@
 <ActionBar backgroundColor="orange" color="white">
     <NavigationButton></NavigationButton>
     <ActionItem></ActionItem>
-    <Label text="NativeScript App Demo"></Label>
+    <Label class="action-bar-title" text="NativeScript App Demo"></Label>
 </ActionBar>
 
 <GridLayout class="grid" rows="*, *, 5*, *" height="1000" padding="20">
@@ -14,12 +14,16 @@
     </GridLayout>
     <ListView row="2" [items]="departments" clas="list-group">
         <ng-template let-department="item">
-            <GridLayout columns="*,*,*,*" class="list-group-item" [nsRouterLink]="['/edit', department.id]" flexDirection="row">
-                <Label col="0" class="label" [text]="department.code"></Label>
-                <Label col="1" class="label" [text]="department.name"></Label>
-                <Label col="2" class="label" [text]="department.code"></Label>
-                <Label col="3" class="label" [text]="department.name"></Label>
+            <GridLayout columns="*,*,*,*" class="list-group-item" (swipe)="onSwipeCellStarted($event)" [nsRouterLink]="['/edit', department.id]" flexDirection="row">
+                <Label col="0" class="label" [text]="department.name"></Label>
+                <Label col="1" class="label" [text]="department.description"></Label>
+                <Label col="2" class="label" [text]="department.head"></Label>
+                <Label col="3" class="label" [text]="department.code"></Label>
             </GridLayout>
         </ng-template>
     </ListView>
+    <Button row="3" class="btn btn-primary m-t-20" [nsRouterLink]="['/new']"
+            backgroundColor="orange" text="Add New" verticalAlignment="center"
+            horizontalAlignment="center">
+    </Button>
 </GridLayout>

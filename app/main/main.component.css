@@ -5,3 +5,16 @@
 .label {
     margin: 10;
 }
+
+.btn-primary {
+    height: 50;
+    margin: 30 5 15 5;
+    background-color: darkorange;
+    border-radius: 5;
+    font-size: 20;
+    font-weight: 600;
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+}

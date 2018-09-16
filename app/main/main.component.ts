@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { IDepartmentModel } from "~/models/department.model";
 import { DepartmentService } from "~/services/department.service";
-import { Observable } from "rxjs";
-import * as applicationSettings from "tns-core-modules/application-settings";
-import {UserModel} from "~/models/user.model";
+import { ActivatedRoute } from "@angular/router";
+import {asElementData} from "@angular/core/src/view";
+import {extractStyleParams} from "@angular/animations/browser/src/util";
+import {throwIfAlreadyLoaded} from "nativescript-angular/common/utils";
+import {xdescribe} from "@angular/core/testing/src/testing_internal";
 
 @Component({
   selector: "Main",
@@ -14,9 +16,25 @@ import {UserModel} from "~/models/user.model";
 export class MainComponent implements OnInit {
   departments: IDepartmentModel[] = [];
 
-  constructor(private departmentService: DepartmentService) {}
+  constructor(
+    private _departmentService: DepartmentService,
+    private _activatedRoute: ActivatedRoute,
+
+  ) {
+
+  }
   ngOnInit() {
-    this.departmentService
+    let id: string;
+    this._activatedRoute.queryParams.subscribe(p => id = p["id"]);
+
+    let index = this.departments.findIndex(x => x.id == id);
+    this.departments.splice(index + 2, 1);
+    this.loadDepartments();
+    console.log(index);
+  }
+
+  loadDepartments(): void {
+    this._departmentService
       .loadDepartments()
       .subscribe(data => (this.departments = data));
   }

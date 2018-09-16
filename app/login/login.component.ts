@@ -39,8 +39,6 @@ export class LoginComponent implements OnInit {
     console.log(applicationSettings.getString("jwt"));
   }
 
-  toSignupPage(): void {}
-
   ngOnInit(): void {
     console.log("Hello NgOnit");
   }

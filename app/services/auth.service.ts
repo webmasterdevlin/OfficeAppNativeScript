@@ -1,33 +1,38 @@
 import { Injectable } from "@angular/core";
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders
-} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UserModel } from "~/models/user.model";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { Urls } from "~/helpers/constants";
-import { alert, prompt } from "tns-core-modules/ui/dialogs";
+
 import { isAndroid } from "tns-core-modules/platform";
-import {TypeJson} from "~/helpers/httpHeaders";
+import { TypeJson } from "~/helpers/httpHeaders";
+import { catchError } from "rxjs/operators";
 
 @Injectable()
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   login(user: UserModel): Observable<any> {
-    return this.httpClient.post(
-      isAndroid ? Urls.login_Android : Urls.login_iOS,
-      JSON.stringify(user),
-      TypeJson
-    );
+    return this.httpClient
+      .post(
+        isAndroid ? Urls.login_Android : Urls.login_iOS,
+        JSON.stringify(user),
+        TypeJson
+      )
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(new Error(err.message));
+        })
+      );
   }
 
   register(user: UserModel): Observable<any> {
-    return this.httpClient.post(
-      isAndroid ? Urls.signup_Android : Urls.signup_iOS,
-      user,
-      TypeJson
-    );
+    return this.httpClient
+      .post(isAndroid ? Urls.signup_Android : Urls.signup_iOS, user, TypeJson)
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          return throwError(new Error(err.message));
+        })
+      );
   }
 }
