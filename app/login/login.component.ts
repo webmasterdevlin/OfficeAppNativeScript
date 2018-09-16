@@ -46,15 +46,15 @@ export class LoginComponent implements OnInit {
   }
 
   submit(): void {
-    // if (!this.user.email || !this.user.password) {
-    //   alert("Please provide both an email address and a password.");
-    //   return;
-    // }
+    if (!this.user.email || !this.user.password) {
+      alert("Please provide both an email address and a password.");
+      return;
+    }
 
-    // if (!this.user.isValidEmail()) {
-    //   alert("Enter a valid email address.");
-    //   return;
-    // }
+    if (!this.user.isValidEmail()) {
+      alert("Enter a valid email address.");
+      return;
+    }
 
     this.processing = true;
     if (this.isLoggingIn) {
@@ -112,20 +112,4 @@ export class LoginComponent implements OnInit {
     console.log("Registered");
     this.isLoggingIn = true;
   }
-
-    // login() {
-    //     if (!Kinvey.User.getActiveUser() == null) {
-    //         Kinvey.User.loginWithMIC('http://example.com')
-    //             .then((user: Kinvey.User) => {
-    //                 this.navigateHome();
-    //                 console.log("user: " + JSON.stringify(user));
-    //             })
-    //             .catch((error: Kinvey.BaseError) => {
-    //                 alert("An error occurred. Check your Kinvey settings.");
-    //                 console.log("error: " + error);
-    //             });
-    //     } else {
-    //         this.navigateHome();
-    //     }
-    // }
 }
