@@ -21,6 +21,10 @@ import { FormsModule } from "@angular/forms";
 import { HttpInterceptorModule } from "~/helpers/http-interceptor.module";
 import { NewDepartmentComponent } from "~/new-department/new-department.component";
 
+import {registerElement} from "nativescript-angular/element-registry";
+
+registerElement('PullToRefresh', () => require ('nativescript-pulltorefresh').PullToRefresh);
+
 @NgModule({
   bootstrap: [AppComponent],
   imports: [

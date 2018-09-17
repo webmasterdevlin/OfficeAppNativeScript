@@ -3,14 +3,14 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { NgZone } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
 import { UserModel } from "~/models/user.model";
-import {isAndroid, isIOS} from "platform";
-import * as applicationSettings from 'tns-core-modules/application-settings'
+import { isAndroid, isIOS } from "platform";
+import * as applicationSettings from "tns-core-modules/application-settings";
 
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 import { AuthService } from "~/services/auth.service";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import {Urls} from "~/helpers/constants";
-import {debug} from "tns-core-modules/utils/debug";
+import { Urls } from "~/helpers/constants";
+import { debug } from "tns-core-modules/utils/debug";
 
 @Component({
   selector: "Login",
@@ -96,13 +96,18 @@ export class LoginComponent implements OnInit {
   }
 
   private login(): void {
-
-    this.authService.login(this.user).subscribe(data => {
-        console.log(data.token);
-        applicationSettings.setString('jwt', data.token);
-    });
-    this.processing = false;
-    this.navigateMain();
+    this.authService
+      .login(this.user)
+      .toPromise()
+      .then(data => {
+        this.processing = false;
+        applicationSettings.setString("jwt", data.token);
+        this.navigateMain();
+      })
+      .catch(() => {
+        this.processing = false;
+        alert("Unfortunately we were unable to create your account.");
+      });
   }
 
   private register(): void {
