@@ -4,17 +4,19 @@
     <Label class="action-bar-title" text="NativeScript App Demo"></Label>
 </ActionBar>
 
-<GridLayout class="grid" rows="*, *, 5*, *" height="1000" padding="20">
-    <Label row="0" margin="20" horizontalAlignment="center" fontSize="24" text="Departments"></Label>
-    <GridLayout row="1" columns="*,*,*,*">
+<GridLayout class="grid" rows="*, *, *, 5*, *" columns="*,*" height="900" padding="20">
+    <ActivityIndicator row="0" col="0" colSpan="2" [busy]="processing"></ActivityIndicator>
+    <Label row="1" col="0" colSpan="2" margin="10" horizontalAlignment="center" fontSize="22" text="Departments"></Label>
+    <GridLayout row="2" columns="*,*,*,*" col="0" colSpan="2">
         <Label col="0" class="title label" text="NAME"></Label>
         <Label col="1" class="title label" text="DESCRIPTION"></Label>
         <Label col="2" class="title label" text="HEAD"></Label>
         <Label col="3" class="title label" text="CODE"></Label>
     </GridLayout>
-    <ListView row="2" [items]="departments" clas="list-group">
+    <ListView class="list-group-item" row="3" col="0" colSpan="2" [items]="departments">
         <ng-template let-department="item">
-            <GridLayout columns="*,*,*,*" class="list-group-item" (swipe)="onSwipeCellStarted($event)" [nsRouterLink]="['/edit', department.id]" flexDirection="row">
+            <GridLayout columns="*,*,*,*" class="list-group-item" (swipe)="onSwipeCellStarted($event)"
+                        [nsRouterLink]="['/edit', department.id]" flexDirection="row">
                 <Label col="0" class="label" [text]="department.name"></Label>
                 <Label col="1" class="label" [text]="department.description"></Label>
                 <Label col="2" class="label" [text]="department.head"></Label>
@@ -22,8 +24,12 @@
             </GridLayout>
         </ng-template>
     </ListView>
-    <Button row="3" class="btn btn-primary m-t-20" [nsRouterLink]="['/new']"
+    <Button row="4" col="0" class="btn btn-primary m-t-20" [nsRouterLink]="['/new']"
             backgroundColor="orange" text="Add New" verticalAlignment="center"
             horizontalAlignment="center">
+    </Button>
+    <Button row="4" col="1" class="btn btn-primary m-t-20"
+            backgroundColor="#9acd32" text="Reload" verticalAlignment="center"
+            horizontalAlignment="center" (tap)="reload()">
     </Button>
 </GridLayout>

@@ -4,7 +4,6 @@ import { RouterExtensions } from "nativescript-angular";
 import { DepartmentService } from "~/services/department.service";
 import { IDepartmentModel } from "~/models/department.model";
 import * as dialogs from "ui/dialogs";
-import { asElementData } from "@angular/core/src/view";
 
 @Component({
   selector: "Edit",
@@ -14,17 +13,17 @@ import { asElementData } from "@angular/core/src/view";
 })
 export class EditDepartmentComponent implements OnInit {
   currentDepartment: IDepartmentModel;
+  deptId: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _routerExtensions: RouterExtensions,
-    private _router: Router,
     private _departmentService: DepartmentService
   ) {}
 
   ngOnInit() {
-    const id = this._activatedRoute.snapshot.params["id"];
-    this.getDepartment(id);
+    this.deptId = this._activatedRoute.snapshot.params["id"];
+    this.getDepartment(this.deptId);
   }
 
   getDepartment(id: string) {
@@ -40,7 +39,7 @@ export class EditDepartmentComponent implements OnInit {
 
     let ex: NavigationExtras = {
       queryParams: {
-        id: this.currentDepartment.id
+        id: this.deptId
       }
     };
     this._routerExtensions.navigate(["/main"], ex);
@@ -58,10 +57,10 @@ export class EditDepartmentComponent implements OnInit {
 
         let ex: NavigationExtras = {
           queryParams: {
-            id: this.currentDepartment.id
+            id: this.deptId
           }
         };
-        this._router.navigate(["/main"], ex);
+        this._routerExtensions.navigate(["/main"], ex);
       }
     });
   }
