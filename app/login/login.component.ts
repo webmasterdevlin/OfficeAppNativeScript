@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   isAuthenticating: boolean = false;
   processing: boolean = false;
   user: UserModel;
+  confirmPassword: string;
 
   constructor(
     private _routerExtensions: RouterExtensions,
@@ -76,22 +77,8 @@ export class LoginComponent implements OnInit {
       cancelButtonText: "Cancel"
     }).then(data => {
       if (data.result) {
-        alert("recovering password");
+        alert("Please check your email for instructions on choosing a new password.");
       }
-    });
-  }
-
-  private navigateMain(): void {
-    this.zone.run(() => {
-      this._routerExtensions.navigate(["main"], {
-        clearHistory: true,
-        animated: true,
-        transition: {
-          name: "slideTop",
-          duration: 350,
-          curve: "ease"
-        }
-      });
     });
   }
 
@@ -111,8 +98,36 @@ export class LoginComponent implements OnInit {
   }
 
   private register(): void {
-    this.processing = false;
-    console.log("Registered");
-    this.isLoggingIn = true;
+    if (this.user.password != this.confirmPassword) {
+      alert("Your passwords do not match.");
+      this.processing = false;
+      return;
+    }
+
+    this.authService.register(this.user).toPromise().then(() => {
+        this.processing = false;
+        alert("Your account was successfully created.");
+        this.isLoggingIn = true;
+    }).catch(() =>
+    {
+        this.processing = false;
+        alert("Unfortunately we were unable to create your account.");
+        this.isLoggingIn = false;
+    });
+
+  }
+
+  private navigateMain(): void {
+    this.zone.run(() => {
+      this._routerExtensions.navigate(["main"], {
+        clearHistory: true,
+        animated: true,
+        transition: {
+          name: "slideTop",
+          duration: 350,
+          curve: "ease"
+        }
+      });
+    });
   }
 }

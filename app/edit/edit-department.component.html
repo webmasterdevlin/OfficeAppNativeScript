@@ -3,16 +3,18 @@
     <ActionItem></ActionItem>
     <Label text="NativeScript App Demo"></Label>
 </ActionBar>
-<GridLayout class="form" columns="*,*" rows="*,*,*,*,*,2*,*" padding="20">
-    <TextField [(ngModel)]="currentDepartment.name" row="0" col="0" colSpan="2"></TextField>
-    <TextField [(ngModel)]="currentDepartment.description" row="1" col="0" colSpan="2"></TextField>
-    <TextField [(ngModel)]="currentDepartment.head" row="2" col="0" colSpan="2"></TextField>
-    <TextField [(ngModel)]="currentDepartment.code" row="3" col="0" colSpan="2"></TextField>
+<ScrollView>
+    <GridLayout class="form" columns="*,*" rows="*,*,*,*,*,*,*" margin="20">
+        <TextField [(ngModel)]="currentDepartment.name" row="0" col="0" colSpan="2"></TextField>
+        <TextField [(ngModel)]="currentDepartment.description" row="1" col="0" colSpan="2"></TextField>
+        <TextField [(ngModel)]="currentDepartment.head" row="2" col="0" colSpan="2"></TextField>
+        <TextField [(ngModel)]="currentDepartment.code" row="3" col="0" colSpan="2"></TextField>
 
-    <Button class="btn btn-primary m-t-20" row="5" col="0" verticalAlignment="center" horizontalAlignment="center"
-            color="white" backgroundColor="#ff8c00" text="Update" (tap)="onUpdate()"
-            ></Button>
-    <Button class="btn btn-primary m-t-20" row="5" col="1" verticalAlignment="center" horizontalAlignment="center"
-            color="white" backgroundColor="Crimson" text="Delete" (tap)="onDelete()"
-            ></Button>
-</GridLayout>
+        <Button class="btn btn-primary m-t-20" row="5" col="0" verticalAlignment="center" horizontalAlignment="center"
+                color="white" backgroundColor="#ff8c00" text="Update" (tap)="onUpdate()"
+        ></Button>
+        <Button class="btn btn-primary m-t-20" row="5" col="1" verticalAlignment="center" horizontalAlignment="center"
+                color="white" backgroundColor="Crimson" text="Delete" (tap)="onDelete()"
+        ></Button>
+    </GridLayout>
+</ScrollView>

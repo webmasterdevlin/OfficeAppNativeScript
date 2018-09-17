@@ -13,7 +13,7 @@
                 <StackLayout class="hr-light"></StackLayout>
             </StackLayout>
             <StackLayout class="input-field" row="2" *ngIf="!isLoggingIn">
-                <TextField class="input" hint="Confirm Password" secure="true" returnKeyType="done"></TextField>
+                <TextField class="input" hint="Confirm Password" secure="true" [(ngModel)]="confirmPassword" returnKeyType="done"></TextField>
                 <StackLayout class="hr-light"></StackLayout>
             </StackLayout>
             <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>

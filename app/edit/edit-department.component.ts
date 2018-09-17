@@ -36,31 +36,18 @@ export class EditDepartmentComponent implements OnInit {
 
   onUpdate() {
     this._departmentService.putDepartment(this.currentDepartment).subscribe();
-
-    let ex: NavigationExtras = {
-      queryParams: {
-        id: this.deptId
-      }
-    };
-    this._routerExtensions.navigate(["/main"], ex);
+    this._routerExtensions.navigate(["/main"], {clearHistory:true});
   }
 
   onDelete() {
-    let result: boolean = false;
+    let userRespond: boolean = false;
     dialogs.confirm("Sure you want to delete this?").then(respond => {
-      result = respond;
-
-      if (result === true) {
+      userRespond = respond;
+      if (userRespond === true) {
         this._departmentService
           .deleteDepartment(this.currentDepartment.id)
           .subscribe();
-
-        let ex: NavigationExtras = {
-          queryParams: {
-            id: this.deptId
-          }
-        };
-        this._routerExtensions.navigate(["/main"], ex);
+        this._routerExtensions.navigate(["/main"], {clearHistory:true});
       }
     });
   }
