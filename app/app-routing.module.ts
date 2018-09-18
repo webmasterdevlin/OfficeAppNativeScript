@@ -8,7 +8,7 @@ import {EditDepartmentComponent} from "~/edit/edit-department.component";
 import {NewDepartmentComponent} from "~/new-department/new-department.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/main", pathMatch: "full" },
+    { path: "", redirectTo: "/login", pathMatch: "full" },
     {path: "main", component: MainComponent},
     {path: "login", component: LoginComponent},
     {path: "signup", component: SignupComponent},
@@ -20,4 +20,5 @@ const routes: Routes = [
     imports: [NativeScriptRouterModule.forRoot(routes)],
     exports: [NativeScriptRouterModule]
 })
+
 export class AppRoutingModule { }

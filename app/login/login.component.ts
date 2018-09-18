@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
       })
       .catch(() => {
         this.processing = false;
-        alert("Unfortunately we were unable to create your account.");
+        alert("username and password don't match.");
       });
   }
 
