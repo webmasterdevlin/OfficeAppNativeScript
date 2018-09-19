@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
-import { IDepartmentModel } from "~/models/department.model";
+import { DepartmentModel } from "~/models/department.model";
 import { Urls } from "~/helpers/constants";
 import { AuthBearer } from "~/helpers/httpHeaders";
 
@@ -13,9 +13,9 @@ import { catchError, map } from "rxjs/operators";
 export class DepartmentService {
   constructor(private _httpClient: HttpClient) {}
 
-  loadDepartments(): Observable<IDepartmentModel[]> {
+  loadDepartments(): Observable<DepartmentModel[]> {
     return this._httpClient
-      .get<IDepartmentModel[]>(
+      .get<DepartmentModel[]>(
         `${isAndroid ? Urls.department_Android : Urls.department_iOS}`,
         AuthBearer.options
       )
@@ -26,9 +26,9 @@ export class DepartmentService {
       );
   }
 
-  getDepartment(id: string): Observable<IDepartmentModel> {
+  getDepartment(id: string): Observable<DepartmentModel> {
     return this._httpClient
-      .get<IDepartmentModel>(
+      .get<DepartmentModel>(
         `${isAndroid ? Urls.department_Android : Urls.department_iOS}${id}`
       )
       .pipe(
@@ -38,7 +38,7 @@ export class DepartmentService {
       );
   }
 
-  postDepartment(department: IDepartmentModel): Observable<any> {
+  postDepartment(department: DepartmentModel): Observable<any> {
     return this._httpClient
       .post(
         `${isAndroid ? Urls.department_Android : Urls.department_iOS}`,
@@ -51,7 +51,7 @@ export class DepartmentService {
       );
   }
 
-  putDepartment(department: IDepartmentModel): Observable<any> {
+  putDepartment(department: DepartmentModel): Observable<any> {
     return this._httpClient
       .put(
         `${isAndroid ? Urls.department_Android : Urls.department_iOS}${

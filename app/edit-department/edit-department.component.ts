@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular";
-import { DepartmentService } from "~/services/department.service";
-import { IDepartmentModel } from "~/models/department.model";
+import { DepartmentService } from "app/services/department.service";
+import { DepartmentModel } from "app/models/department.model";
 import * as dialogs from "ui/dialogs";
 
 @Component({
@@ -12,7 +12,7 @@ import * as dialogs from "ui/dialogs";
   styleUrls: ["./edit-department.component.css"]
 })
 export class EditDepartmentComponent implements OnInit {
-  currentDepartment: IDepartmentModel;
+  currentDepartment: DepartmentModel;
   deptId: string;
 
   constructor(
@@ -29,7 +29,7 @@ export class EditDepartmentComponent implements OnInit {
   getDepartment(id: string) {
     this._departmentService
       .getDepartment(id)
-      .subscribe((data: IDepartmentModel) => {
+      .subscribe((data: DepartmentModel) => {
         this.currentDepartment = data;
       });
   }

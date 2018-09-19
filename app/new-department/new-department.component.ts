@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { DepartmentService } from "~/services/department.service";
-import { IDepartmentModel } from "~/models/department.model";
+import { DepartmentModel } from "~/models/department.model";
 import { RouterExtensions } from "nativescript-angular";
 
 @Component({
@@ -10,13 +10,13 @@ import { RouterExtensions } from "nativescript-angular";
   styleUrls: ["./new-department.component.css"]
 })
 export class NewDepartmentComponent {
-  newDepartment: IDepartmentModel;
+  newDepartment: DepartmentModel;
 
   constructor(
     private _departmentService: DepartmentService,
     private _routerExtensions: RouterExtensions
   ) {
-    this.newDepartment = new IDepartmentModel();
+    this.newDepartment = new DepartmentModel();
   }
 
   OnSave(): void {

@@ -14,7 +14,7 @@ import {
 } from "nativescript-angular";
 import { AuthService } from "~/services/auth.service";
 import { DepartmentService } from "~/services/department.service";
-import { EditDepartmentComponent } from "~/edit/edit-department.component";
+import { EditDepartmentComponent } from "~/edit-department/edit-department.component";
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";

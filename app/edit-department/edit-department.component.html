@@ -1,0 +1,56 @@
+<ActionBar backgroundColor="orange" color="white">
+    <NavigationButton text="Go Back"></NavigationButton>
+    <ActionItem></ActionItem>
+    <Label text="NativeScript App Demo"></Label>
+</ActionBar>
+<GridLayout class="form" columns="*,*" rows="*,*,*,*,*,*,*" margin="20" padding="20,0,20,0" verticalAlignment="stretch">
+    <StackLayout row="0" col="0" colSpan="2">
+        <StackLayout orientation="horizontal">
+            <Label text="Name: " class="label-helper"
+                   verticalAlignment="top" horizontalAlignment="left"></Label>
+            <StackLayout class="input-field" verticalAlignment="stretch">
+                <TextField [(ngModel)]="currentDepartment.name" autocorrect="false"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+    </StackLayout>
+    <StackLayout row="1" col="0" colSpan="2" √>
+        <StackLayout orientation="horizontal">
+            <Label text="Description: " class="label-helper"
+                   verticalAlignment="top" horizontalAlignment="left"></Label>
+            <StackLayout class="input-field" verticalAlignment="stretch">
+                <TextField [(ngModel)]="currentDepartment.description" autocorrect="false"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout row="2" col="0" colSpan="2" class="input-field">
+        <StackLayout orientation="horizontal">
+            <Label text="Head: " class="label-helper"
+                   verticalAlignment="top" horizontalAlignment="left"></Label>
+            <StackLayout class="input-field" verticalAlignment="stretch">
+                <TextField [(ngModel)]="currentDepartment.head" autocorrect="false"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout row="3" col="0" colSpan="2" class="input-field">
+        <StackLayout orientation="horizontal">
+            <Label text="Code: " class="label-helper"
+                   verticalAlignment="top" horizontalAlignment="left"></Label>
+            <StackLayout class="input-field" verticalAlignment="stretch">
+                <TextField [(ngModel)]="currentDepartment.code" autocorrect="false"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+
+    <Button class="btn btn-primary m-t-10" row="5" col="0" verticalAlignment="center" horizontalAlignment="center"
+            color="white" backgroundColor="#ff8c00" text="Update" (tap)="onUpdate()"
+    ></Button>
+    <Button class="btn btn-primary m-t-10" row="5" col="1" verticalAlignment="center" horizontalAlignment="center"
+            color="white" backgroundColor="Crimson" text="Delete" (tap)="onDelete()"
+    ></Button>
+</GridLayout>

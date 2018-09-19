@@ -29,3 +29,8 @@
 .btn-primary:disabled {
     opacity: 0.5;
 }
+
+.label-helper {
+    font-weight: 700;
+    margin-top: 8;
+}

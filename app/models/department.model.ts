@@ -1,4 +1,4 @@
-export class IDepartmentModel {
+export class DepartmentModel {
   id: string;
   name: string;
   description: string;

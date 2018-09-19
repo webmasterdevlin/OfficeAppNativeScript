@@ -4,11 +4,11 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import {MainComponent} from "~/main/main.component";
 import {LoginComponent} from "~/login/login.component";
 import {SignupComponent} from "~/signup/signup.component";
-import {EditDepartmentComponent} from "~/edit/edit-department.component";
+import {EditDepartmentComponent} from "~/edit-department/edit-department.component";
 import {NewDepartmentComponent} from "~/new-department/new-department.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/login", pathMatch: "full" },
+    { path: "", redirectTo: "/main", pathMatch: "full" },
     {path: "main", component: MainComponent},
     {path: "login", component: LoginComponent},
     {path: "signup", component: SignupComponent},
