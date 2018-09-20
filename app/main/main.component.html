@@ -1,6 +1,7 @@
 <ActionBar backgroundColor="orange" color="white">
     <NavigationButton></NavigationButton>
-    <ActionItem></ActionItem>
+    <ActionItem (tap)="logout()" ios.position="right"
+                text="Logout" android.position="popup"></ActionItem>
     <Label class="action-bar-title" text="NativeScript App Demo"></Label>
 </ActionBar>
 

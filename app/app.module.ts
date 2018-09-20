@@ -18,10 +18,12 @@ import { EditDepartmentComponent } from "~/edit-department/edit-department.compo
 import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
-import { HttpInterceptorModule } from "~/helpers/http-interceptor.module";
+import { HttpInterceptorModule } from "~/auth/http-interceptor.module";
 import { NewDepartmentComponent } from "~/new-department/new-department.component";
 
 import {registerElement} from "nativescript-angular/element-registry";
+import {AuthGuard} from "~/auth/auth.guard";
+import {JwtHelper} from "angular2-jwt";
 
 registerElement('PullToRefresh', () => require ('nativescript-pulltorefresh').PullToRefresh);
 
@@ -46,7 +48,7 @@ registerElement('PullToRefresh', () => require ('nativescript-pulltorefresh').Pu
     NewDepartmentComponent,
     EditDepartmentComponent
   ],
-  providers: [AuthService, DepartmentService],
+  providers: [JwtHelper, AuthService, DepartmentService, AuthGuard],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {}

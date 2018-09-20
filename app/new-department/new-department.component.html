@@ -1,6 +1,7 @@
 <ActionBar backgroundColor="orange" color="white">
     <NavigationButton text="Go Back"></NavigationButton>
-    <ActionItem></ActionItem>
+    <ActionItem (tap)="logout()" ios.position="right"
+                text="Logout" android.position="popup"></ActionItem>
 </ActionBar>
 
 <GridLayout class="form input-field" rows="*,*,*,*,*,2*" margin="20" padding="20,0,20,0" verticalAlignment="stretch">

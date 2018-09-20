@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationExtras, Router } from "@angular/router";
+import { ActivatedRoute} from "@angular/router";
 import { RouterExtensions } from "nativescript-angular";
-import { DepartmentService } from "app/services/department.service";
-import { DepartmentModel } from "app/models/department.model";
 import * as dialogs from "ui/dialogs";
+import {DepartmentModel} from "~/models/department.model";
+import {DepartmentService} from "~/services/department.service";
+import * as applicationSettings from "tns-core-modules/application-settings";
 
 @Component({
   selector: "Edit",
@@ -36,7 +37,7 @@ export class EditDepartmentComponent implements OnInit {
 
   onUpdate() {
     this._departmentService.putDepartment(this.currentDepartment).subscribe();
-    this._routerExtensions.navigate(["/main"], {clearHistory:true});
+    this._routerExtensions.navigate(["/main"], { clearHistory: true });
   }
 
   onDelete() {
@@ -47,8 +48,14 @@ export class EditDepartmentComponent implements OnInit {
         this._departmentService
           .deleteDepartment(this.currentDepartment.id)
           .subscribe();
-        this._routerExtensions.navigate(["/main"], {clearHistory:true});
+        this._routerExtensions.navigate(["/main"], { clearHistory: true });
       }
     });
   }
+
+    logout() {
+        applicationSettings.remove("jwt");
+        applicationSettings.clear();
+        this._routerExtensions.navigate(["/login"], { clearHistory: true });
+    }
 }

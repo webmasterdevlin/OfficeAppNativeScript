@@ -6,10 +6,11 @@ import {LoginComponent} from "~/login/login.component";
 import {SignupComponent} from "~/signup/signup.component";
 import {EditDepartmentComponent} from "~/edit-department/edit-department.component";
 import {NewDepartmentComponent} from "~/new-department/new-department.component";
+import {AuthGuard} from "~/auth/auth.guard";
 
 const routes: Routes = [
     { path: "", redirectTo: "/main", pathMatch: "full" },
-    {path: "main", component: MainComponent},
+    {path: "main", component: MainComponent, canActivate: [AuthGuard]},
     {path: "login", component: LoginComponent},
     {path: "signup", component: SignupComponent},
     {path: "new", component: NewDepartmentComponent},

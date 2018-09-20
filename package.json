@@ -24,6 +24,7 @@
     "@angular/platform-browser": "~6.1.0",
     "@angular/platform-browser-dynamic": "~6.1.0",
     "@angular/router": "~6.1.0",
+    "angular2-jwt": "^0.2.3",
     "email-validator": "^2.0.4",
     "nativescript-angular": "~6.1.0",
     "nativescript-pulltorefresh": "^2.1.1",

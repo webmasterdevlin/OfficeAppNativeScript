@@ -3,14 +3,13 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { NgZone } from "@angular/core";
 import { Page } from "tns-core-modules/ui/page";
 import { UserModel } from "~/models/user.model";
-import { isAndroid, isIOS } from "platform";
+
 import * as applicationSettings from "tns-core-modules/application-settings";
 
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 import { AuthService } from "~/services/auth.service";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Urls } from "~/helpers/constants";
-import { debug } from "tns-core-modules/utils/debug";
+import { HttpClient } from "@angular/common/http";
+
 
 @Component({
   selector: "Login",
@@ -20,7 +19,6 @@ import { debug } from "tns-core-modules/utils/debug";
 })
 export class LoginComponent implements OnInit {
   isLoggingIn: boolean = true;
-  isAuthenticating: boolean = false;
   processing: boolean = false;
   user: UserModel;
   confirmPassword: string;
