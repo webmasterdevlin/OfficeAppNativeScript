@@ -1,4 +1,4 @@
-export const Urls = {
+export const BaseUrl = {
   // Replace localhost with 10.0.2.2 on Android emulator
   department_iOS: "http://localhost:5000/api/departments/",
   signup_iOS: "http://localhost:5000/api/register",

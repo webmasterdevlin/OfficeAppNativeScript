@@ -23,7 +23,6 @@ import { NewDepartmentComponent } from "~/new-department/new-department.componen
 
 import {registerElement} from "nativescript-angular/element-registry";
 import {AuthGuard} from "~/auth/auth.guard";
-import {JwtHelper} from "angular2-jwt";
 
 registerElement('PullToRefresh', () => require ('nativescript-pulltorefresh').PullToRefresh);
 
@@ -48,7 +47,7 @@ registerElement('PullToRefresh', () => require ('nativescript-pulltorefresh').Pu
     NewDepartmentComponent,
     EditDepartmentComponent
   ],
-  providers: [JwtHelper, AuthService, DepartmentService, AuthGuard],
+  providers: [ AuthService, DepartmentService, AuthGuard],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {}

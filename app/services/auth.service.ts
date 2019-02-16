@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { UserModel } from "~/models/user.model";
 import { Observable, throwError } from "rxjs";
-import { Urls } from "~/helpers/constants";
+import { BaseUrl } from "~/helpers/constants";
 
 import { isAndroid } from "tns-core-modules/platform";
 import { TypeJson } from "~/helpers/httpHeaders";
@@ -15,7 +15,7 @@ export class AuthService {
   login(user: UserModel): Observable<any> {
     return this.httpClient
       .post(
-        isAndroid ? Urls.login_Android : Urls.login_iOS,
+        isAndroid ? BaseUrl.login_Android : BaseUrl.login_iOS,
         JSON.stringify(user),
         TypeJson
       )
@@ -28,7 +28,7 @@ export class AuthService {
 
   register(user: UserModel): Observable<any> {
     return this.httpClient
-      .post(isAndroid ? Urls.signup_Android : Urls.signup_iOS, user, TypeJson)
+      .post(isAndroid ? BaseUrl.signup_Android : BaseUrl.signup_iOS, user, TypeJson)
       .pipe(
         catchError((err: HttpErrorResponse) => {
           return throwError(new Error(err.message));
